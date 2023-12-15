@@ -5,11 +5,13 @@ import HeroCarousel from "@/components/HeroCarousel";
 import ProductCard from "@/components/ProductCard";
 import SearchBar from "@/components/Searchbar";
 
-const Home = () => {
+const Home = async () => {
+  const allProducts = await getAllProducts();
   return (
     <>
-      <section className="px-6 md:px-20 py-24">
-        <div className="flex max-xl:flex-col gap-16">
+      <section className="flex justify-around px-6 md:px-20 py-24">
+        <div className="flex justify-center w-3/4 max-xl:flex-col gap-16">
+          {/* Left Side */}
           <div className="flex flex-col justify-center">
             <p className="small-text text-primary-green">
               Smart Shopping Starts Here:
@@ -34,13 +36,18 @@ const Home = () => {
 
             <SearchBar />
           </div>
-
+          {/* Right Side */}
           <HeroCarousel />
         </div>
       </section>
 
       <section className="trending-section">
         <h2 className="section-text">Trending</h2>
+        <div className="flex flex-wrap gap-x-8 gap-y-16">
+          {allProducts?.map((product) => (
+            <ProductCard key={product._id} product={product} />
+          ))}
+        </div>
       </section>
     </>
   );

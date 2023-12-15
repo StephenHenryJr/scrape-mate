@@ -34,7 +34,7 @@ const SearchBar = () => {
 
     try {
       setIsLoading(true);
-      
+      const product = await scrapeAndStoreProduct(searchPrompt)
     } catch (error) {
       console.log(error);
     } finally {
@@ -48,7 +48,7 @@ const SearchBar = () => {
         type="text"
         value={searchPrompt}
         onChange={(e) => setSearchPrompt(e.target.value)}
-        placeholder="Enter product link"
+        placeholder="Enter Amazon product link"
         className="searchbar-input"
       />
       <button
