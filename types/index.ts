@@ -13,8 +13,10 @@ export type PriceHistoryItem = {
     image: string;
     title: string;
     currentPrice: number;
+    currentPriceCents: number;
     originalPrice: number;
     priceHistory: PriceHistoryItem[] | [];
+    purchaseHistory: string;
     highestPrice: number;
     lowestPrice: number;
     averagePrice: number;

@@ -80,18 +80,22 @@ export async function scrapeAmazonProduct(url: string) {
     // Extract the product description
     const description = extractDescription($("#feature-bullets .a-spacing-mini"));
 
+    // Extract the amount of times bought in last month
+    const purchaseHistory = $("#social-proofing-faceout-title-tk_bought span").text().trim()
+
     const data = {
       url,
       currency: currency || "$",
       image: imageUrls[0],
       title,
-      currentPrice: currentPrice,
-      currentPriceCents: currentPriceCents,
+      currentPrice: currentPrice || originalPrice, 
+      currentPriceCents: currentPriceCents || "",
       originalPrice: originalPrice,
       priceHistory: [],
+      purchaseHistory: purchaseHistory,
       discountRate: discountRate,
       isOutOfStock: outOfStock,
-      category: category,
+      category: category || "Category Unknown",
       reviewsCount: reviewsCount,
       stars: stars,
       amazonsChoice: amazonsChoice,
