@@ -84,7 +84,7 @@ export async function getSimilarProducts(productId: string) {
 
     const similarProducts = await Product.find({
       _id: { $ne: productId },
-    }).limit(3);
+    }).limit(4);
 
     return similarProducts;
   } catch (error) {
@@ -97,7 +97,8 @@ export async function addUserEmailToProduct(productId: string, userEmail: string
     const product = await Product.findById(productId);
 
     if(!product) return;
-
+    
+    // It takes each user object from the product.users array and checks if the email property of that user matches the userEmail provided as a parameter to the addUserEmailToProduct function.
     const userExists = product.users.some((user: User) => user.email === userEmail);
 
     if(!userExists) {

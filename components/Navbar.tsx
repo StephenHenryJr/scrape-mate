@@ -17,6 +17,7 @@ const Navbar = () => {
             width={30}
             height={30}
             alt="logo"
+            className="mb-1"
           />
           <p className="nav-logo">
             Scrape<span className="text-primary">Mate</span>
