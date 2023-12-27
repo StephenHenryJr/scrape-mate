@@ -45,7 +45,7 @@ export async function scrapeAmazonProduct(url: string) {
     const currentPriceCents = extractCurrentPriceCents($(".priceToPay span.a-price-fraction")).replace(",", "");
 
     // Extract the original price info
-    const originalPrice = extractOriginalPrice($(".a-price.a-text-price span.a-offscreen")).replace(/[^\d.-]/g, "");
+    const originalPrice = extractOriginalPrice($(".a-spacing-small  .a-price.a-text-price span.a-offscreen")).replace(/[^\d.-]/g, "");
 
     // Extract the availability info
     const outOfStock =$("#availabilityInsideBuyBox_feature_div #availability span")
@@ -89,15 +89,15 @@ export async function scrapeAmazonProduct(url: string) {
       image: imageUrls[0],
       title,
       currentPrice: currentPrice || originalPrice, 
-      currentPriceCents: currentPriceCents || "",
-      originalPrice: originalPrice,
+      currentPriceCents: currentPriceCents || 0,
+      originalPrice: originalPrice || currentPrice,
       priceHistory: [],
       purchaseHistory: purchaseHistory,
       discountRate: discountRate,
       isOutOfStock: outOfStock,
       category: category || "Category Unknown",
       reviewsCount: reviewsCount,
-      stars: stars,
+      stars: stars || 0,
       amazonsChoice: amazonsChoice,
       description: description,
       lowestPrice: Number(currentPrice) || Number(originalPrice),

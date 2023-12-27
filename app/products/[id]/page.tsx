@@ -1,7 +1,7 @@
 import Modal from "@/components/Modal";
 import PriceInfoCard from "@/components/PriceInfoCard";
 import ProductCard from "@/components/ProductCard";
-import { getProductById, getSimilarProducts } from "@/lib/actions"
+import { getProductById, getSimilarProducts } from "@/lib/actions";
 import { formatNumber } from "@/lib/utils";
 import { Product } from "@/types";
 import Image from "next/image";
@@ -15,7 +15,7 @@ type Props = {
 const ProductDetails = async ({ params }: Props) => {
   const product = await getProductById(params.id);
   if (!product) redirect("/");
-  
+
   const similarProducts = await getSimilarProducts(params.id);
 
   const amazonsChoice = product.amazonsChoice;
@@ -106,7 +106,9 @@ const ProductDetails = async ({ params }: Props) => {
             <div className="flex flex-col gap-2">
               <p className="text-[34px] text-secondary font-bold">
                 {product.currency} {product.currentPrice}
-                {product.currentPriceCents !== undefined && product.currentPriceCents !== null && `.${product.currentPriceCents}`}
+                {product.currentPriceCents !== undefined &&
+                  product.currentPriceCents !== null &&
+                  product.currentPriceCents > 0 && `.${product.currentPriceCents}`}
               </p>
               {(discount && (
                 <p className="text-[21px] text-red-500 opacity-50">
@@ -116,7 +118,7 @@ const ProductDetails = async ({ params }: Props) => {
                     {product.originalPrice}{" "}
                   </span>
                 </p>
-              )) || <p className="text-sm text-black opacity-50">No Deal</p>}
+              )) || <p className="text-sm text-black opacity-50">Non-discounted rate</p>}
             </div>
             <div className="flex flex-col gap-4">
               <div className="flex gap-3">
@@ -164,8 +166,11 @@ const ProductDetails = async ({ params }: Props) => {
               <PriceInfoCard
                 title="Current Price"
                 iconSrc="/assets/icons/price-tag.svg"
-                value={`${product.currency} ${product.currentPrice}${product.currentPriceCents ? `.${product.currentPriceCents}` : ''}`}
-
+                value={`${product.currency} ${product.currentPrice}${
+                  product.currentPriceCents
+                    ? `.${product.currentPriceCents}`
+                    : ""
+                }`}
               />
               <PriceInfoCard
                 title="Average Price"
@@ -193,7 +198,6 @@ const ProductDetails = async ({ params }: Props) => {
           <Modal productId={params.id} />
         </div>
       </div>
-
 
       {/* PRODUCT DESCRIPTION AND BUY NOW */}
       <div className="flex flex-col gap-16">
@@ -228,7 +232,7 @@ const ProductDetails = async ({ params }: Props) => {
       {/* SIMILAR PRODUCTS */}
       {similarProducts && similarProducts?.length > 0 && (
         <div className="py-14 flex flex-col gap-2 w-full">
-          <p className="section-text">Similar Products</p>
+          <p className="section-text">Recent Searches:</p>
 
           <div className="flex flex-wrap gap-10 mt-7 w-full">
             {similarProducts.map((product) => (

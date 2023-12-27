@@ -76,7 +76,7 @@ export function extractReviewsCount(element: any) {
     const reviewCount = match[0];
     return reviewCount;
   } else {
-    return "Reviews count not found";
+    return "N/A";
   }
 }
 
@@ -92,7 +92,7 @@ export function extractStarsCount(element: any) {
     const starCount = match[0];
     return starCount;
   } else {
-    return "Star count not found";
+    return 0;
   }
 }
 
