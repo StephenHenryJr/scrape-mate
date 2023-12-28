@@ -3,7 +3,7 @@ import { getAllProducts } from "@/lib/actions";
 
 import HeroCarousel from "@/components/HeroCarousel";
 import ProductCard from "@/components/ProductCard";
-import SearchBar from "@/components/Searchbar";
+import SearchBar from "@/components/SearchBar";
 
 const Home = async () => {
   const allProducts = await getAllProducts();
