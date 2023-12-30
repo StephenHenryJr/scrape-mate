@@ -14,7 +14,6 @@ export async function GET(request: Request) {
     connectToDB();
 
     const products = await Product.find({});
-    console.log(products)
     if (!products) throw new Error("No product fetched");
 
     // ======================== 1 SCRAPE LATEST PRODUCT DETAILS & UPDATE DB
@@ -24,7 +23,7 @@ export async function GET(request: Request) {
         const scrapedProduct = await scrapeAmazonProduct(currentProduct.url);
 
         if (!scrapedProduct) return;
-
+               
         const updatedPriceHistory = [
           ...currentProduct.priceHistory,
           {
