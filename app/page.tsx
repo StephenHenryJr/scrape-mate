@@ -7,10 +7,10 @@ import Product from "@/lib/models/product.models";
 import { connectToDB } from "@/lib/mongoose";
 import ProductCard from "@/components/ProductCard";
 
-function getAllProducts() {
+async function getAllProducts() {
   try {
-    connectToDB;
-    const products = Product.find();
+    await connectToDB();
+    const products = await Product.find();
 
     return products;
   } catch (error) {
