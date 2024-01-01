@@ -1,3 +1,4 @@
+'use server'
 import Image from "next/image";
 import HeroCarousel from "@/components/HeroCarousel";
 import SearchBar from "@/components/SearchBar";
