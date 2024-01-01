@@ -1,9 +1,26 @@
 import Image from "next/image";
 import HeroCarousel from "@/components/HeroCarousel";
 import SearchBar from "@/components/SearchBar";
-import SearchHistory from "@/components/SearchHistory";
+// import SearchHistory from "@/components/SearchHistory";
 
-const Home = () => {
+import Product from "@/lib/models/product.models";
+import { connectToDB } from "@/lib/mongoose";
+import ProductCard from "@/components/ProductCard";
+
+export async function getAllProducts() {
+  try {
+    connectToDB;
+    const products = await Product.find();
+
+    return products;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const Home = async () => {
+
+  const allProducts = await getAllProducts();
 
   return (
     <>
@@ -39,7 +56,15 @@ const Home = () => {
         </div>
       </section>
 
-      <SearchHistory />
+      {/* <SearchHistory /> */}
+      <section className="trending-section">
+    <h2 className="section-text">Search History:</h2>
+    <div className="flex flex-wrap gap-x-8 gap-y-16">
+      {allProducts?.map((product) => (
+        <ProductCard key={product._id} product={product} />
+      ))}
+    </div>
+  </section>
 
     </>
   );
