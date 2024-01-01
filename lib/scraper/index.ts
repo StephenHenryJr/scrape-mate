@@ -29,6 +29,7 @@ export async function scrapeAmazonProduct(url: string) {
     host: "brd.superproxy.io",
     port,
     rejectUnauthorized: false,
+    cache: "no-store",
   };
 
   try {

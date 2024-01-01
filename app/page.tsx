@@ -1,27 +1,9 @@
-'use server'
 import Image from "next/image";
 import HeroCarousel from "@/components/HeroCarousel";
 import SearchBar from "@/components/SearchBar";
-// import SearchHistory from "@/components/SearchHistory";
-
-import Product from "@/lib/models/product.models";
-import { connectToDB } from "@/lib/mongoose";
-import ProductCard from "@/components/ProductCard";
-
-async function getAllProducts() {
-  try {
-    await connectToDB();
-    const products = await Product.find();
-
-    return products;
-  } catch (error) {
-    console.log(error);
-  }
-}
+import SearchHistory from "@/components/SearchHistory";
 
 const Home = async () => {
-
-  const allProducts = await getAllProducts();
 
   return (
     <>
@@ -58,17 +40,10 @@ const Home = async () => {
       </section>
 
       {/* <SearchHistory /> */}
-      <section className="trending-section">
-    <h2 className="section-text">Search History:</h2>
-    <div className="flex flex-wrap gap-x-8 gap-y-16">
-      {allProducts?.map((product) => (
-        <ProductCard key={product._id} product={product} />
-      ))}
-    </div>
-  </section>
-
+      <SearchHistory />
     </>
   );
 };
+
 
 export default Home;
