@@ -1,13 +1,9 @@
 import Image from "next/image";
-import { getAllProducts } from "@/lib/actions";
 import HeroCarousel from "@/components/HeroCarousel";
-import ProductCard from "@/components/ProductCard";
 import SearchBar from "@/components/SearchBar";
 import SearchHistory from "@/components/SearchHistory";
 
-const Home = async () => {
-
-  const allProducts = await getAllProducts();
+const Home = () => {
 
   return (
     <>
