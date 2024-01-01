@@ -1,7 +1,6 @@
 import Modal from "@/components/Modal";
 import PriceInfoCard from "@/components/PriceInfoCard";
 import ProductCard from "@/components/ProductCard";
-import SearchHistory from "@/components/SearchHistory";
 import { getProductById, getSimilarProducts } from "@/lib/actions";
 import { formatNumber } from "@/lib/utils";
 import { Product } from "@/types";
@@ -244,7 +243,6 @@ const ProductDetails = async ({ params }: Props) => {
         </div>
       )}
 
-      <SearchHistory />
     </div>
   );
 };
