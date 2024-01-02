@@ -3,6 +3,8 @@ import HeroCarousel from "@/components/HeroCarousel";
 import SearchBar from "@/components/SearchBar";
 import SearchHistory from "@/components/SearchHistory";
 
+export const dynamic = 'force-dynamic'
+
 const Home = async () => {
 
   return (
@@ -21,7 +23,7 @@ const Home = async () => {
               />
             </p>
 
-            <h1 className="head-text">
+            <h1 className="head-text">s
               Harness the potential of
               <span className="text-primary"> ScrapeMate</span>
             </h1>

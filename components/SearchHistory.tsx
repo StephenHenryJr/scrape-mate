@@ -1,3 +1,5 @@
+'use server'
+
 import { getAllProducts } from "@/lib/actions";
 import ProductCard from "./ProductCard";
 
@@ -13,7 +15,7 @@ const SearchHistory = async () => {
       ))}
     </div>
   </section>
-  ) 
+  )
 }
 
 export default SearchHistory
