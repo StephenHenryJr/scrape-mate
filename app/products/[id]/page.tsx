@@ -13,7 +13,6 @@ type Props = {
 };
 
 const ProductDetails = async ({ params }: Props) => {
-  
   const product = await getProductById(params.id);
   if (!product) redirect("/");
 
@@ -106,10 +105,12 @@ const ProductDetails = async ({ params }: Props) => {
           <div className="product-info">
             <div className="flex flex-col gap-2">
               <p className="text-[34px] text-secondary font-bold">
-                {product.currency}{product.currentPrice}
+                {product.currency}
+                {product.currentPrice}
                 {product.currentPriceCents !== undefined &&
                   product.currentPriceCents !== null &&
-                  product.currentPriceCents > 0 && `.${product.currentPriceCents}`}
+                  product.currentPriceCents > 0 &&
+                  `.${product.currentPriceCents}`}
               </p>
               {(discount && (
                 <p className="text-[21px] text-red-500 opacity-50">
@@ -119,7 +120,11 @@ const ProductDetails = async ({ params }: Props) => {
                     {product.originalPrice}{" "}
                   </span>
                 </p>
-              )) || <p className="text-sm text-black opacity-50">Non-discounted rate</p>}
+              )) || (
+                <p className="text-sm text-black opacity-50">
+                  Non-discounted rate
+                </p>
+              )}
             </div>
             <div className="flex flex-col gap-4">
               <div className="flex gap-3">
@@ -176,23 +181,21 @@ const ProductDetails = async ({ params }: Props) => {
               <PriceInfoCard
                 title="Average Price"
                 iconSrc="/assets/icons/chart.svg"
-                value={`${product.currency}${formatNumber(
-                  product.averagePrice
-                )}`}
+                value={`${product.currency}${product.averagePrice}`}
               />
               <PriceInfoCard
                 title="Highest Price"
                 iconSrc="/assets/icons/arrow-up.svg"
-                value={`${product.currency}${formatNumber(
+                value={`${product.currency}${
                   product.highestPrice
-                )}`}
+                }`}
               />
               <PriceInfoCard
                 title="Lowest Price"
                 iconSrc="/assets/icons/arrow-down.svg"
-                value={`${product.currency}${formatNumber(
+                value={`${product.currency}${
                   product.lowestPrice
-                )}`}
+                }`}
               />
             </div>
           </div>
@@ -242,7 +245,6 @@ const ProductDetails = async ({ params }: Props) => {
           </div>
         </div>
       )}
-
     </div>
   );
 };
