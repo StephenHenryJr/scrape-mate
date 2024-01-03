@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+
 import { getLowestPrice, getHighestPrice, getAveragePrice, getEmailNotifType } from "@/lib/utils";
 import { connectToDB } from "@/lib/mongoose";
 import Product from "@/lib/models/product.models";
@@ -14,6 +15,7 @@ export async function GET(request: Request) {
     connectToDB();
 
     const products = await Product.find({});
+    
     if (!products) throw new Error("No product fetched");
 
     // ======================== 1 SCRAPE LATEST PRODUCT DETAILS & UPDATE DB

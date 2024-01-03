@@ -106,7 +106,7 @@ const ProductDetails = async ({ params }: Props) => {
           <div className="product-info">
             <div className="flex flex-col gap-2">
               <p className="text-[34px] text-secondary font-bold">
-                {product.currency} {product.currentPrice}
+                {product.currency}{product.currentPrice}
                 {product.currentPriceCents !== undefined &&
                   product.currentPriceCents !== null &&
                   product.currentPriceCents > 0 && `.${product.currentPriceCents}`}
@@ -167,7 +167,7 @@ const ProductDetails = async ({ params }: Props) => {
               <PriceInfoCard
                 title="Current Price"
                 iconSrc="/assets/icons/price-tag.svg"
-                value={`${product.currency} ${product.currentPrice}${
+                value={`${product.currency}${product.currentPrice}${
                   product.currentPriceCents
                     ? `.${product.currentPriceCents}`
                     : ""
@@ -176,21 +176,21 @@ const ProductDetails = async ({ params }: Props) => {
               <PriceInfoCard
                 title="Average Price"
                 iconSrc="/assets/icons/chart.svg"
-                value={`${product.currency} ${formatNumber(
+                value={`${product.currency}${formatNumber(
                   product.averagePrice
                 )}`}
               />
               <PriceInfoCard
                 title="Highest Price"
                 iconSrc="/assets/icons/arrow-up.svg"
-                value={`${product.currency} ${formatNumber(
+                value={`${product.currency}${formatNumber(
                   product.highestPrice
                 )}`}
               />
               <PriceInfoCard
                 title="Lowest Price"
                 iconSrc="/assets/icons/arrow-down.svg"
-                value={`${product.currency} ${formatNumber(
+                value={`${product.currency}${formatNumber(
                   product.lowestPrice
                 )}`}
               />
